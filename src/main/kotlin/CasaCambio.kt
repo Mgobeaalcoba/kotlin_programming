@@ -15,6 +15,10 @@ fun main(){
     println("Ingresa la cantidad de dolares para la apertura de caja: $")
     dolaresEnCaja = readLine()!!.toDouble()
 
+    controlDeOperaciones()
+}
+
+fun controlDeOperaciones() {
     print("Ingresa la cantidad de dolares a cambiar: $")
 
     val dolaresACambiar = readLine()!!.toDouble()
@@ -35,4 +39,6 @@ fun main(){
         Pesos en caja: $${DecimalFormat(formato).format(pesosEnCaja)}
         Dolares en caja: $${DecimalFormat(formato).format((dolaresEnCaja))}
     """.trimIndent())
+
+    controlDeOperaciones() // De esta forma el programa no terminaría nunca salvo que lo corte.
 }
