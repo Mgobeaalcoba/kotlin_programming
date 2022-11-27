@@ -1,5 +1,7 @@
 package clases
 
+import constantes.Constantes
+import java.lang.Exception
 import java.util.*
 
 // Es una buena práctica dejar comentados los metodos de nuestras clases.
@@ -28,11 +30,16 @@ class Nota(var nombre: String,
 // una class sin nada delante es public por default
 class Nota(var nombre: String,
            var contenido: String,
-           var fechaCreacion: Date) {
+           var fechaCreacion: Date) { // Son propiedades de cada instancia.
     // Bloque de inicialización del constructor primario:
     init {
+
         println("Se instancio la clase con el constructor primario...")
         nombre = nombre.uppercase()
+        numeroInstancias ++ // Hago crecer el número de creacion de instancias frente a cada objeto creado.
+        if (nombre.length > Constantes.LONGITUD_MAXIMA_NOMBRE) throw Exception("El nombre no puede tener más de 10 caracteres")
+        // El throw sería el equivalente a un raise en Python. Disparan una excepción frente a una condición.
+
     }
 
     // Este es el constructor secundario:
@@ -42,7 +49,23 @@ class Nota(var nombre: String,
         this.contenido = contenido.uppercase()
         // En el constructor secundario debo llamar a los atributos con el this adelante.
     }
-    // De esta forma el valor de date no es necesario enviarlo. Se construye solo al instanciar la clase.
+
+    // Acá vamos a declarar el companion object de mi clase nota:
+    // El companion object es un singleton (ver abajo) que pertenece a una clase.
+    // Tmb puedo declarar singletons por fuera de mi clase.
+    companion object {
+
+        var numeroInstancias = 0 // para que aumente frente a cada creación de una instancia objeto debo sumarlo al init
+        // Son propiedades de la clase. Por eso van en companion object
+
+        // Dentro del companion object tambien puedo crear metodos de la clase:
+        fun mostrarNumeroInstancias() {
+            println(numeroInstancias)
+        }
+
+    }
+
+    // De esta forma el valor de "date()" no es necesario enviarlo. Se construye solo al instanciar la clase.
 // Los constructores secundarios siempre llaman a su vez al constructor primario pero no viceversa.
 
     // Creo un metodo para mi clase Nota:
@@ -83,3 +106,10 @@ el parametro "y" y el "z" va a llamar a otro metodo de igual nombre pero distint
 - Protected
 - Private
  */
+
+// singleton: una clase que solo puedo instanciar una unica vez.
+
+// Atributos o propiedades de una clase: Son compartidos por todos los objetos/instancias de una clase
+// Atributos o propiedades de una instancia/objeto: Son exclusivos de ese objeto. Ej: nombres distintos de las notas.
+// Los atributos de instancia van dentro del parentesis de la clase.
+// Los atributos de la clase van dentro del "companion object" de la clase.
