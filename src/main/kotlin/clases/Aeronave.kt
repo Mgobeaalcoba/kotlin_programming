@@ -6,6 +6,7 @@ package clases
 // Aeronave.
 // Si fijara como protected a la var numeroPasajero entonces podría acceder desde la
 // la clase original o cualquiera de sus clases heredadas pero no por fuera.
+
 open class Aeronave (/* private - protected */ var numeroPasajero: Int) { // Si no pongo var luego no puedo acceder al mismo debajo
 
     init {
@@ -22,3 +23,9 @@ class Avion : Aeronave (50) {
     }
 
 }
+
+// Metodos: algoritmos de acciones que pueden realizar nuestros objetos.
+// Son casi iguales a una funcion. Se declaran con la palabra fun tmb.
+// Diferencias con una función:
+// A un método se le pasa implícitamente el objeto en el que se llamó
+// Un método puede operar sobre datos contenidos dentro de la clase.
