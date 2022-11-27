@@ -5,7 +5,8 @@ import java.time.Period
 import java.time.format.DateTimeFormatter
 
 // Si a una propiedad de mi clase la defino con String? o Int? permito que si no me pasan el valor sea nulo
-class Persona( // Defino propiedades de mi constructor primario
+
+open class Persona( // Defino propiedades de mi constructor primario
     var nombre: String,
     var apellido: String,
     var direccion: String,
@@ -21,10 +22,20 @@ class Persona( // Defino propiedades de mi constructor primario
         return Period.between(fechaNacimientoDate, LocalDate.now()).years
     }
 
+    // Metodos sobreescritos: puedo sobreescribir lo que hace un método de una clase.
+    // Ej: el método toString() de la clase Int que viene heredado de la clase Any.
+    override fun toString(): String {
+        //return super.toString() // Super significa que el método viene heredado de la clase padre Any.
+        return "Nombre: $nombre $apellido, Dirección: $direccion, Telefono: ${telefono ?: "N/D"}, Fecha de nacimiento: $fechaNacimientoDate, Edad: ${obtenerEdad()}" // Re escribo la función toString() de la clase Int
+        //Como telefono soporta nulas, uso un operador terneario (?) para pedirle que si es nulo ponga N/D y sino el telefono.
+    }
+
+
     companion object {
         const val FORMATO_FECHA = "dd/MM/yyyy"
     }
 
 }
 
+// Vamos ahora a crear una clase herencia de persona. Llamada empleado.
 
