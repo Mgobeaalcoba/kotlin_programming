@@ -24,3 +24,8 @@ class Administrador(
     }
 
 }
+
+// Existen clases abstractas y propiedades abstractas de esas clases.
+// los atributos y propiedades abstractas deben ser sobreescritos si o si
+// en sus clases heredadas. Los atributos y propiedades a secas pueden no ser
+// sobreescritos.
